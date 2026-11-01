@@ -1,17 +1,38 @@
 import type { Doc } from "@/data/pspdb"
 import { resolveParagraph } from "@/data/pspdb"
 
-/** 生成文档完整全文（已套用填写内容），返回纯文本字符串。 */
-export function buildFullText(doc: Doc, values: Record<string, string>): string {
+export type TextFormat = "txt" | "md"
+
+/** 去掉行内 Markdown 标记（用于纯文本导出/复制） */
+function stripInlineMarkdown(text: string): string {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1（$2）")
+}
+
+/** 生成文档完整全文（已套用填写内容）。md 保留标记，txt 去除标记。 */
+export function buildFullText(
+  doc: Doc,
+  values: Record<string, string>,
+  format: TextFormat = "txt"
+): string {
   const lines: string[] = []
+  const clean = (s: string) => (format === "md" ? s : stripInlineMarkdown(s))
+
   for (const section of doc.sections) {
     if (section.title) {
-      lines.push(section.title)
+      lines.push(format === "md" ? `## ${section.title}` : section.title)
     }
     for (const p of section.paragraphs) {
       const resolved = resolveParagraph(p, values)
       if (resolved.trim() === "") continue
-      lines.push(resolved)
+      if (resolved.startsWith("# ")) {
+        const heading = resolved.slice(2)
+        lines.push(format === "md" ? `# ${heading}` : heading)
+      } else {
+        lines.push(clean(resolved))
+      }
     }
   }
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n"

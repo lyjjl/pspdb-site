@@ -16,32 +16,28 @@ export default function App() {
   const [values, setValues] = useState(initial)
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
-        <div className="flex flex-col gap-10">
-          {docs.map((doc) => (
-            <DocCard
-              key={doc.id}
-              doc={doc}
-              values={values[doc.id]}
-              onChange={(id, v) =>
-                setValues((prev) => ({
-                  ...prev,
-                  [doc.id]: { ...prev[doc.id], [id]: v },
-                }))
-              }
-              fullText={buildFullText(doc, values[doc.id])}
-              onDownload={(ext) =>
-                downloadText(
-                  `${exportFilename(doc, values[doc.id])}.${ext}`,
-                  buildFullText(doc, values[doc.id]),
-                  ext === "md" ? "text/markdown" : "text/plain"
-                )
-              }
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+    <main className="mx-auto flex max-w-3xl flex-col gap-16 px-4 py-12 sm:px-8">
+      {docs.map((doc) => (
+        <DocCard
+          key={doc.id}
+          doc={doc}
+          values={values[doc.id]}
+          onChange={(id, v) =>
+            setValues((prev) => ({
+              ...prev,
+              [doc.id]: { ...prev[doc.id], [id]: v },
+            }))
+          }
+          getText={(ext) => buildFullText(doc, values[doc.id], ext)}
+          onDownload={(ext) =>
+            downloadText(
+              `${exportFilename(doc, values[doc.id])}.${ext}`,
+              buildFullText(doc, values[doc.id], ext),
+              ext === "md" ? "text/markdown" : "text/plain"
+            )
+          }
+        />
+      ))}
+    </main>
   )
 }
