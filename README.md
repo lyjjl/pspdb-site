@@ -26,6 +26,22 @@ pnpm build
 
 构建产物输出到 `dist/`，生产环境资源路径为 `/pspdb-site/`。
 
+## 字体
+
+预览使用开源字体子集，自托管于 `src/assets/fonts/`：
+
+- 正文 / 标题：思源宋体（Noto Serif SC）
+- 一级标题：思源黑体（Noto Sans SC）
+- 数字与拉丁字符：Times New Roman
+
+字体按实际用字裁剪：正文包含 GB2312 一级常用字（覆盖用户输入），其余字重仅包含文档中出现的字符。重新生成需要 `fonttools` 与 `brotli`：
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install fonttools brotli
+.venv/bin/python scripts/subset-fonts.py
+```
+
 ## 部署
 
 推送到 `main` 分支后，GitHub Actions 自动构建并发布到 GitHub Pages 项目子路径

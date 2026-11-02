@@ -62,18 +62,15 @@
     "Source Han Serif SC", "Noto Serif SC", "Songti SC", SimSun, Georgia,
     serif;
 
-  /* 公文排版专用字体栈（开源）：数字/拉丁统一 Times New Roman */
-  --font-gongwen-doc: /* 标题 · 思源宋体 900 */
-    "Times New Roman", "Noto Serif SC", "Source Han Serif SC",
-    "Songti SC", serif;
-  --font-gongwen-h1: /* 一级标题 · 思源黑体 700 */
-    "Times New Roman", "Noto Sans SC", "Source Han Sans SC",
-    "PingFang SC", sans-serif;
-  --font-gongwen-h2: /* 二级标题 · 霞鹜文楷 */
-    "Times New Roman", "LXGW WenKai", "KaiTi", "STKaiti", serif;
-  --font-gongwen-body: /* 正文 · 思源宋体 400 */
-    "Times New Roman", "Noto Serif SC", "Source Han Serif SC",
-    "Songti SC", serif;
+  /* 公文排版专用字体栈：数字/拉丁统一 Times New Roman */
+  --font-gongwen-doc: /* 标题 · 思源宋体 900（子集） */
+    "Times New Roman", "PSPDB Serif", "Source Han Serif SC", serif;
+  --font-gongwen-h1: /* 一级标题 · 思源黑体 700（子集） */
+    "Times New Roman", "PSPDB Sans", "Source Han Sans SC", sans-serif;
+  --font-gongwen-h2: /* 二级标题 · 文楷优先，回落宋体 */
+    "Times New Roman", "LXGW WenKai", "PSPDB Serif", "KaiTi", serif;
+  --font-gongwen-body: /* 正文 · 思源宋体 400（子集） */
+    "Times New Roman", "PSPDB Serif", "Source Han Serif SC", serif;
 }
 
 @layer components {
