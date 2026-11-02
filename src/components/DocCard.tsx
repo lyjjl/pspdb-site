@@ -132,8 +132,8 @@ export function DocCard({
         </Button>
       </div>
 
-      <div className="rounded-xl border bg-card px-6 py-8 shadow-sm sm:px-10">
-        <div className="gw-page gw-body">
+      <div className="rounded-xl border bg-card px-5 py-6 shadow-sm sm:px-8 sm:py-8">
+        <div className="gw-body">
           {doc.sections.map((section, si) => (
             <section key={si} className="mb-6 last:mb-0">
               {section.title && section.titleKind === "doc" && (

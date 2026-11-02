@@ -62,49 +62,42 @@
     "Source Han Serif SC", "Noto Serif SC", "Songti SC", SimSun, Georgia,
     serif;
 
-  /* 公文排版专用字体栈：数字/拉丁字符统一命中 Times New Roman */
-  --font-gongwen-doc: /* 标题 · 方正小标宋 2号 */
-    "Times New Roman", "FZXiaoBiaoSong-B05S", "方正小标宋_GBK",
-    "方正小标宋简体", "STZhongsong", "Source Han Serif SC",
-    "Noto Serif CJK SC", "SimSun", serif;
-  --font-gongwen-h1: /* 一级标题 · 黑体 */
-    "Times New Roman", "SimHei", "Heiti SC", "Source Han Sans SC",
-    "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
-  --font-gongwen-h2: /* 二级标题 · 楷体 */
-    "Times New Roman", "KaiTi_GB2312", "楷体_GB2312", "KaiTi", "楷体",
-    "STKaiti", "Noto Serif CJK SC", serif;
-  --font-gongwen-body: /* 正文 · 仿宋 */
-    "Times New Roman", "FangSong_GB2312", "仿宋_GB2312", "FangSong", "仿宋",
-    "STFangsong", "Source Han Serif SC", "Noto Serif CJK SC", serif;
+  /* 公文排版专用字体栈（开源）：数字/拉丁统一 Times New Roman */
+  --font-gongwen-doc: /* 标题 · 思源宋体 900 */
+    "Times New Roman", "Noto Serif SC", "Source Han Serif SC",
+    "Songti SC", serif;
+  --font-gongwen-h1: /* 一级标题 · 思源黑体 700 */
+    "Times New Roman", "Noto Sans SC", "Source Han Sans SC",
+    "PingFang SC", sans-serif;
+  --font-gongwen-h2: /* 二级标题 · 霞鹜文楷 */
+    "Times New Roman", "LXGW WenKai", "KaiTi", "STKaiti", serif;
+  --font-gongwen-body: /* 正文 · 思源宋体 400 */
+    "Times New Roman", "Noto Serif SC", "Source Han Serif SC",
+    "Songti SC", serif;
 }
 
 @layer components {
-  /* 公文版心：28 字/行（1em = 1 个汉字） */
-  .gw-page {
-    max-width: 28em;
-    margin-inline: auto;
-  }
-
-  /* 文档标题：方正小标宋 2号（22pt）居中，回行按词意均衡断行 */
+  /* 文档标题：思源宋体 900，2号（22pt）居中，回行按词意均衡 */
   .gw-title {
     font-family: var(--font-gongwen-doc);
     font-size: 22pt;
     line-height: 1.55;
-    font-weight: 700;
+    font-weight: 900;
     text-align: center;
     letter-spacing: 0.01em;
     text-wrap: balance;
   }
 
-  /* 正文：仿宋 3号（16pt），行距 28.9 磅 ≈ 1.806 */
+  /* 正文：思源宋体 3号（16pt），行距 28.9 磅 ≈ 1.806 */
   .gw-body {
     font-family: var(--font-gongwen-body);
     font-size: 16pt;
     line-height: 1.806;
     text-align: justify;
+    font-weight: 400;
   }
 
-  /* 一级标题：黑体 3号 */
+  /* 一级标题：思源黑体 3号 */
   .gw-h1 {
     font-family: var(--font-gongwen-h1);
     font-size: 16pt;
@@ -112,15 +105,16 @@
     font-weight: 700;
   }
 
-  /* 二级标题：楷体 3号 */
+  /* 二级标题：霞鹜文楷 3号 */
   .gw-h2 {
     font-family: var(--font-gongwen-h2);
     font-size: 16pt;
     line-height: 1.806;
+    font-weight: 400;
   }
 }
 
-/* 小屏按比例缩小，仍保持「28 字/行」的版心比例 */
+/* 小屏按比例缩小 */
 @media (max-width: 640px) {
   .gw-title {
     font-size: 18pt;
