@@ -80,9 +80,10 @@ export function buildFullText(
 
   for (const section of doc.sections) {
     if (section.title) {
+      const isDoc = section.titleKind === "doc"
       blocks.push({
         tight: false,
-        lines: [isMd ? `## ${section.title}` : section.title],
+        lines: [isMd ? `${isDoc ? "#" : "##"} ${section.title}` : section.title],
       })
     }
 

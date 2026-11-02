@@ -20,6 +20,8 @@ export function resolveParagraph(text: string, fields: Record<string, string>): 
 
 export interface Section {
   title?: string
+  /** 标题层级：doc 为文档主标题（小标宋居中），h1 黑体，h2 楷体 */
+  titleKind?: "doc" | "h1" | "h2"
   paragraphs: string[]
 }
 
@@ -70,6 +72,7 @@ export const privacySections: Section[] = [
   },
   {
     title: "公共骰娘隐私与数据处理声明",
+    titleKind: "doc",
     paragraphs: [
       "版本： 1.0",
       "生效日期： {{effective_date}}",

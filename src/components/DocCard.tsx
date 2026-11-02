@@ -88,7 +88,7 @@ function renderParagraph(
         placeholder={field?.hint ?? field?.label ?? id}
         value={values[id] ?? ""}
         onChange={(e) => onChange(id, e.target.value)}
-        className="field-sizing-content mx-1 inline-block min-w-16 max-w-full rounded-sm border-b border-dashed border-primary/40 bg-primary/[0.04] px-2 text-base font-medium text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 hover:border-primary/70 focus:border-solid focus:border-primary focus:bg-primary/[0.07]"
+        className="field-sizing-content mx-0.5 inline-block min-w-16 max-w-full rounded-sm border-b border-dashed border-primary/40 bg-primary/[0.04] px-1 font-[inherit] text-[length:inherit] leading-[inherit] text-foreground outline-none transition-colors placeholder:font-sans placeholder:text-[0.75em] placeholder:text-muted-foreground/60 hover:border-primary/70 focus:border-solid focus:border-primary focus:bg-primary/[0.07]"
       />
     )
   })
@@ -132,42 +132,33 @@ export function DocCard({
         </Button>
       </div>
 
-      <div className="rounded-xl border bg-card px-6 py-8 text-base shadow-sm sm:px-10">
-        {doc.sections.map((section, si) => (
-          <section key={si} className="mb-8 last:mb-0">
-            {section.title && (
-              <h2 className="mb-4 mt-8 flex items-center gap-2 text-xl font-semibold tracking-tight first:mt-0">
-                <span className="h-4 w-1 rounded-full bg-primary/50" aria-hidden />
-                {section.title}
-              </h2>
-            )}
-            <div
-              className={
-                section.title
-                  ? "border-l border-border pl-4 sm:pl-6"
-                  : undefined
-              }
-            >
+      <div className="rounded-xl border bg-card px-6 py-8 shadow-sm sm:px-10">
+        <div className="gw-page gw-body">
+          {doc.sections.map((section, si) => (
+            <section key={si} className="mb-6 last:mb-0">
+              {section.title && section.titleKind === "doc" && (
+                <h1 className="gw-title mb-8 mt-2">{section.title}</h1>
+              )}
+              {section.title && section.titleKind !== "doc" && (
+                <h2 className="gw-h1 mb-0 mt-6 indent-[2em] first:mt-0">
+                  {section.title}
+                </h2>
+              )}
               {section.paragraphs.map((p, pi) => {
                 const isDocTitle = p.startsWith("# ")
-                return (
-                  <p
-                    key={pi}
-                    className={
-                      isDocTitle
-                        ? "mb-6 text-2xl font-bold tracking-tight"
-                        : "mb-2 text-justify last:mb-0"
-                    }
-                  >
-                    {isDocTitle
-                      ? p.replace(/^#\s*/, "")
-                      : renderParagraph(p, values, onChange, fieldsById)}
+                return isDocTitle ? (
+                  <h1 key={pi} className="gw-title mb-8 mt-2">
+                    {p.replace(/^#\s*/, "")}
+                  </h1>
+                ) : (
+                  <p key={pi} className="mb-0 indent-[2em]">
+                    {renderParagraph(p, values, onChange, fieldsById)}
                   </p>
                 )
               })}
-            </div>
-          </section>
-        ))}
+            </section>
+          ))}
+        </div>
       </div>
     </article>
   )
