@@ -207,8 +207,10 @@ export const privacySections: Section[] = [
 // 文档二：PSPDB 范本授权与使用说明
 // ---------------------------------------------------------------------------
 
+/** 原范本的公开地址：固定为本站 GitHub Pages 地址，不提供编辑 */
+export const SOURCE_URL = "https://lyjjl.github.io/pspdb-site/"
+
 export const licenseFields: Field[] = [
-  { id: "source_url", label: "原范本地址", hint: "范本的公开获取地址", defaultValue: "" },
   { id: "author_name", label: "原作者（署名格式）", hint: "保留原作者署名", defaultValue: "白世求祈（QQ：1578003305，微信：bsqq0721）" },
   { id: "modify_note", label: "修改情况", hint: "未修改／已修改，附修改说明", defaultValue: "未修改" },
   { id: "operator_name", label: "骰娘运营维护方", hint: "在本声明中的主体名称", defaultValue: "" },
@@ -220,7 +222,7 @@ export const licenseSections: Section[] = [
       "# PSPDB 范本授权与使用说明 V1.0.0",
       "适用作品：《公共骰娘隐私声明通用范本（PSPDB）V1.0.0》",
       "授权方：白世求祈（QQ号:1578003305，微信:bsqq0721）",
-      "原范本地址：{{source_url}}",
+      `原范本地址：${SOURCE_URL}`,
       "许可协议：知识共享署名—相同方式共享 4.0 国际许可协议（CC BY-SA 4.0）",
     ],
   },
@@ -293,7 +295,7 @@ export const licenseSections: Section[] = [
     paragraphs: [
       "本骰娘隐私声明基于《公共骰娘隐私声明通用范本（PSPDB）V1.0.0》制定。",
       "原作者：{{author_name}}",
-      "原范本地址：{{source_url}}",
+      `原范本地址：${SOURCE_URL}`,
       "授权许可：CC BY-SA 4.0",
       "修改情况：{{modify_note}}",
       "本声明及其实际执行情况由{{operator_name}}负责。",
