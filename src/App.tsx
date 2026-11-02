@@ -38,6 +38,14 @@ export default function App() {
           }
         />
       ))}
+      <footer className="pb-4 text-center text-xs text-muted-foreground">
+        <a
+          href="https://lyjjl.github.io/pspdb-site/"
+          className="underline decoration-border underline-offset-4 hover:text-foreground"
+        >
+          lyjjl.github.io/pspdb-site
+        </a>
+      </footer>
     </main>
   )
 }
